@@ -19,10 +19,10 @@ func Perf(date string, solve1 func() int, solve2 func() int) {
 
 	s1 := solve1()
 
-	log.Printf("Answer: %d, time spent: %s\n", s1, time.Since(start))
+	log.Printf("Answer part 1: %d, time spent: %s\n", s1, time.Since(start))
 	start = time.Now()
 
 	s2 := solve2()
 
-	log.Printf("Answer: %d, time spent: %s\n", s2, time.Since(start))
+	log.Printf("Answer part 2: %d, time spent: %s\n", s2, time.Since(start))
 }
