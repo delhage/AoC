@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"./day01"
 	"./day07"
 	"./day09"
 	"./day10"
@@ -15,6 +16,8 @@ import (
 func main() {
 
 	switch os.Args[1] {
+	case "day01":
+		utils.Perf("2020-12-01", day01.Solve1, day01.Solve2)
 	case "day07":
 		utils.Perf("2020-12-07", day07.Solve1, day07.Solve2)
 	case "day09":
