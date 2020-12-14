@@ -34,24 +34,26 @@ func ParseLines(input []string) ([]map[byte]int, []int) {
 
 // Solve1 returns answer to first problem
 func Solve1() int {
-	return 0
-}
-
-// Solve2 returns answer to second problem
-func Solve2() int {
-	var i, j int
-	qlist, num := ParseLines(input)
+	var i int
+	qlist, _ := ParseLines(input)
 
 	for _, q := range qlist {
 		i += len(q)
 	}
+	return i
+}
+
+// Solve2 returns answer to second problem
+func Solve2() int {
+	var i int
+	qlist, num := ParseLines(input)
+
 	for l, q := range qlist {
-		//fmt.Println(q)
 		for k := range q {
 			if q[k] == num[l] {
-				j++
+				i++
 			}
 		}
 	}
-	return j
+	return i
 }
