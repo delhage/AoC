@@ -10,11 +10,13 @@ import (
 	"./day05"
 	"./day06"
 	"./day07"
+	"./day08"
 	"./day09"
 	"./day10"
 	"./day11"
 	"./day12"
 	"./day13"
+	"./day14"
 	"./utils"
 )
 
@@ -35,6 +37,8 @@ func main() {
 		utils.Perf("2020-12-06", day06.Solve1, day06.Solve2)
 	case "day07":
 		utils.Perf("2020-12-07", day07.Solve1, day07.Solve2)
+	case "day08":
+		utils.Perf("2020-12-08", day08.Solve1, day08.Solve2)
 	case "day09":
 		utils.Perf("2020-12-09", day09.Solve1, day09.Solve2)
 	case "day10":
@@ -45,5 +49,7 @@ func main() {
 		utils.Perf("2020-12-12", day12.Solve1, day12.Solve2)
 	case "day13":
 		utils.Perf("2020-12-13", day13.Solve1, day13.Solve2)
+	case "day14":
+		utils.Perf("2020-12-14", day14.Solve1, day14.Solve2)
 	}
 }
