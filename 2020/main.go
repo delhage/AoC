@@ -7,6 +7,7 @@ import (
 	"./day02"
 	"./day03"
 	"./day04"
+	"./day05"
 	"./day07"
 	"./day09"
 	"./day10"
@@ -27,6 +28,8 @@ func main() {
 		utils.Perf("2020-12-03", day03.Solve1, day03.Solve2)
 	case "day04":
 		utils.Perf("2020-12-04", day04.Solve1, day04.Solve2)
+	case "day05":
+		utils.Perf("2020-12-05", day05.Solve1, day05.Solve2)
 	case "day07":
 		utils.Perf("2020-12-07", day07.Solve1, day07.Solve2)
 	case "day09":
