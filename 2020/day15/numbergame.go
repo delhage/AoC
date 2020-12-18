@@ -1,7 +1,6 @@
 package day15
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -31,7 +30,7 @@ func speak(w []int, n int) int {
 		last = l
 	}
 	delete(seen, last)
-	fmt.Println(seen)
+	//fmt.Println(seen)
 	for i < n {
 		now := 0
 		if val, ok := seen[last]; !ok {
