@@ -16,7 +16,6 @@ import (
 	"./day11"
 	"./day12"
 	"./day13"
-	"./day14"
 	"./utils"
 )
 
@@ -49,7 +48,5 @@ func main() {
 		utils.Perf("2020-12-12", day12.Solve1, day12.Solve2)
 	case "day13":
 		utils.Perf("2020-12-13", day13.Solve1, day13.Solve2)
-	case "day14":
-		utils.Perf("2020-12-14", day14.Solve1, day14.Solve2)
 	}
 }
