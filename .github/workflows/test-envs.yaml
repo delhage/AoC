@@ -1,0 +1,15 @@
+---
+name: "Test environment protection"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  first-job:
+  environment: prod
+  command: echo First Job
+
+  second-job:
+  environment: prod
+  command: echo Second Job
+  needs: first-job
