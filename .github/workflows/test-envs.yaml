@@ -6,11 +6,13 @@ on:
 
 jobs:
   first-job:
+    runs-on: ubuntu-22.04
     environment: prod
     steps:
       - run: echo First Job
 
   second-job:
+    runs-on: ubuntu-22.04
     needs: first-job
     environment: prod
     steps:
