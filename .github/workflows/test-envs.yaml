@@ -6,10 +6,12 @@ on:
 
 jobs:
   first-job:
-  environment: prod
-  command: echo First Job
+    environment: prod
+    steps:
+      - run: echo First Job
 
   second-job:
-  environment: prod
-  command: echo Second Job
+    environment: prod
+    steps:
+      - run: echo Second Job
   needs: first-job
