@@ -2,7 +2,6 @@ package day02
 
 import (
 	"aoc/2023/utils"
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -64,9 +63,6 @@ func ParseLines(input []string) []game {
 				_ = reflections.SetField(&handful[i], caser.String(d[1]), num)
 			}
 		}
-		fmt.Println("Handful: ", handful)
-		fmt.Println("id: ", id)
-		fmt.Println("")
 		g.id, _ = strconv.Atoi(id)
 		g.sample = handful
 		res = append(res, g)
@@ -78,7 +74,6 @@ func ParseLines(input []string) []game {
 func Solve1() int {
 	res := 0
 	games := ParseLines(input)
-	fmt.Println(games)
 	for _, g := range games {
 		for _, h := range g.sample {
 			if h.Blue > bag1.Blue || h.Green > bag1.Green || h.Red > bag1.Red {

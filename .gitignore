@@ -13,3 +13,5 @@
 
 # Editor backup files
 *~
+# go modules cache
+pkg
