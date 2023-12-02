@@ -7,5 +7,5 @@ using `utils/perf.go` which will also measure and print the time it takes for ea
 Run the program for one day (day01 in this example):
 
 ```bash
-$ go run main day01
+$ go run main.go day01
 ```
