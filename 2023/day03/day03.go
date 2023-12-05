@@ -106,7 +106,7 @@ func Solve1() int {
 // Solve2 returns answer to second problem
 func Solve2() int {
 	var numbersRegex = regexp.MustCompile(`([0-9]+)`)
-	var gearsRegex = regexp.MustCompile(`*`)
+	//var gearsRegex = regexp.MustCompile(`*`)
 
 	// Set numbers matrix
 	for i, s := range input {
@@ -119,9 +119,10 @@ func Solve2() int {
 		}
 	}
 
-	// Get valid numbers
+	// Get valid gears
 	for i, s := range input {
 		res := numbersRegex.FindAllString(s, -1)
+		var sum, total int
 		if i == 0 {
 			fmt.Println(res)
 		}
