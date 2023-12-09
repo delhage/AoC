@@ -18,7 +18,7 @@ func TestSolve1(t *testing.T) {
 }
 
 func TestSolve2(t *testing.T) {
-	want := 30
+	want := 2
 	res := Solve2()
 	if res != want {
 		t.Fatalf(`Solve2() = %d, want match for %d`, res, want)
