@@ -72,6 +72,25 @@ func (h HandSlice) Less(i, j int) bool {
 }
 func (h HandSlice) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
 
+type HandSlice2 []Hand
+
+func (h HandSlice2) Len() int { return len(h) }
+func (h HandSlice2) Less(i, j int) bool {
+	if h[i].handType < h[j].handType {
+		return true
+	} else if h[i].handType == h[j].handType {
+		for k := 0; k < 5; k++ {
+			if cardMap2[h[i].cards[k]] < cardMap2[h[j].cards[k]] {
+				return true
+			} else if cardMap2[h[i].cards[k]] > cardMap2[h[j].cards[k]] {
+				return false
+			}
+		}
+	}
+	return false
+}
+func (h HandSlice2) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
+
 func stringToHand(s string) Hand {
 	var res Hand
 	t := strings.Fields(s)
@@ -85,9 +104,7 @@ func stringToHand(s string) Hand {
 
 func getType(h []string) int {
 	var cardArray [15]int
-	//fmt.Println("h", h)
 	for i := 0; i < len(h); i++ {
-		//fmt.Println("cardMap[h[i]]", cardMap[h[i]])
 		cardArray[cardMap[h[i]]]++
 	}
 
@@ -121,7 +138,92 @@ func getType(h []string) int {
 		return 1
 	}
 
-	//fmt.Println("cardArray", cardArray)
+	return 0
+}
+
+func getType2(h []string) int {
+	var cardArray [15]int
+	joker := 0
+	for i := 0; i < len(h); i++ {
+		cardArray[cardMap2[h[i]]]++
+		if h[i] == "J" {
+			joker++
+		}
+	}
+
+	if joker == 0 {
+		return getType(h)
+	}
+
+	var pair = 0
+	var three = 0
+	var four = 0
+
+	for i := 0; i < len(cardArray); i++ {
+		if cardArray[i] == 5 {
+			return 6
+		} else if cardArray[i] == 4 {
+			four++
+		} else if cardArray[i] == 3 {
+			three++
+		} else if cardArray[i] == 2 {
+			pair++
+		} else if cardArray[i] == 1 {
+			continue
+		}
+	}
+
+	if joker == 1 {
+		if four == 1 {
+			return 6
+		}
+		if three == 1 {
+			return 5
+		}
+		if pair == 2 {
+			return 4
+		}
+		if pair == 1 {
+			return 3
+		}
+		if pair == 0 {
+			return 1
+		}
+	}
+
+	if joker == 2 {
+		if three == 1 {
+			return 6
+		}
+		if pair == 2 {
+			return 5
+		}
+		if pair == 1 {
+			return 3
+		}
+	}
+
+	if joker == 3 {
+
+		if pair == 1 {
+			return 6
+		}
+		if three == 1 {
+			return 5
+		}
+		if pair == 0 {
+			return 5
+		}
+	}
+
+	if joker == 4 {
+		return 6
+	}
+
+	if joker == 5 {
+		return 6
+	}
+
 	return 0
 }
 
@@ -133,12 +235,9 @@ func Solve1() int {
 	for _, s := range input {
 		h1 := stringToHand(s)
 		h1.handType = getType(h1.cards)
-		//fmt.Println("t1", h1.handType)
 		hands = append(hands, h1)
 	}
-	//fmt.Println(hands)
 	sort.Stable(HandSlice(hands))
-	//fmt.Println(hands)
 	for i := 0; i < len(hands); i++ {
 		res += hands[i].bid * (i + 1)
 	}
@@ -147,5 +246,17 @@ func Solve1() int {
 
 // Solve2 returns answer to second problem
 func Solve2() int {
-	return 1
+	var res = 0
+	var hands HandSlice2
+
+	for _, s := range input {
+		h1 := stringToHand(s)
+		h1.handType = getType2(h1.cards)
+		hands = append(hands, h1)
+	}
+	sort.Stable(HandSlice2(hands))
+	for i := 0; i < len(hands); i++ {
+		res += hands[i].bid * (i + 1)
+	}
+	return res
 }
