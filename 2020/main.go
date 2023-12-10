@@ -3,21 +3,20 @@ package main
 import (
 	"os"
 
-	"./day01"
-	"./day02"
-	"./day03"
-	"./day04"
-	"./day05"
-	"./day06"
-	"./day07"
-	"./day08"
-	"./day09"
-	"./day10"
-	"./day11"
-	"./day12"
-	"./day13"
-	"./day14"
-	"./utils"
+	"aoc/2020/day01"
+	"aoc/2020/day02"
+	"aoc/2020/day03"
+	"aoc/2020/day04"
+	"aoc/2020/day05"
+	"aoc/2020/day06"
+	"aoc/2020/day07"
+	"aoc/2020/day08"
+	"aoc/2020/day09"
+	"aoc/2020/day10"
+	"aoc/2020/day11"
+	"aoc/2020/day12"
+	"aoc/2020/day13"
+	"aoc/2020/utils"
 )
 
 func main() {
@@ -49,7 +48,5 @@ func main() {
 		utils.Perf("2020-12-12", day12.Solve1, day12.Solve2)
 	case "day13":
 		utils.Perf("2020-12-13", day13.Solve1, day13.Solve2)
-	case "day14":
-		utils.Perf("2020-12-14", day14.Solve1, day14.Solve2)
 	}
 }
