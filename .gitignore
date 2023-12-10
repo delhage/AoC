@@ -13,3 +13,6 @@
 
 # Editor backup files
 *~
+# go modules cache
+pkg
+go.work.sum

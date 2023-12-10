@@ -1,7 +1,7 @@
 package day06
 
 import (
-	"../utils"
+	"aoc/2020/utils"
 )
 
 var input, _ = utils.ReadFile("day06/input.txt")
