@@ -125,6 +125,90 @@ func getType(h []string) int {
 	return 0
 }
 
+func getType2(h []string) int {
+	var cardArray [15]int
+	//fmt.Println("h", h)
+	joker := 0
+	for i := 0; i < len(h); i++ {
+		//fmt.Println("cardMap[h[i]]", cardMap[h[i]])
+		cardArray[cardMap2[h[i]]]++
+		if h[i] == "J" {
+			joker++
+		}
+	}
+
+	var pair = 0
+	var three = 0
+	var four = 0
+
+	for i := 0; i < len(cardArray); i++ {
+		if cardArray[i] == 5 {
+			return 6
+		} else if cardArray[i] == 4 {
+			four++
+		} else if cardArray[i] == 3 {
+			three++
+		} else if cardArray[i] == 2 {
+			pair++
+		} else if cardArray[i] == 1 {
+			continue
+		}
+	}
+
+	if joker == 0 {
+
+		if four == 1 {
+			return 5
+		}
+		if pair == 1 && three == 1 {
+			return 4
+		}
+		if three == 1 {
+			return 3
+		}
+		if pair == 2 {
+			return 2
+		}
+		if pair == 1 {
+			return 1
+		}
+	}
+
+	if four == 1 && joker == 1 {
+		return 6
+	}
+	if three == 1 && joker == 1 {
+		return 5
+	}
+	if three == 1 && joker == 2 {
+		return 6
+	}
+	if pair == 1 && joker == 1 {
+		return 3
+	}
+	if pair == 1 && joker == 2 {
+		return 3
+	}
+	if pair == 1 && joker == 3 {
+		return 6
+	}
+	if pair == 2 && joker == 1 {
+		return 4
+	}
+	if pair == 2 && joker == 2 {
+		return 4
+	}
+	if pair == 2 && joker == 3 {
+		return 6
+	}
+	if joker == 4 {
+		return 6
+	}
+
+	//fmt.Println("cardArray", cardArray)
+	return 0
+}
+
 // Solve1 returns answer to first problem
 func Solve1() int {
 	var res = 0
@@ -147,5 +231,20 @@ func Solve1() int {
 
 // Solve2 returns answer to second problem
 func Solve2() int {
-	return 1
+	var res = 0
+	var hands HandSlice
+
+	for _, s := range input {
+		h1 := stringToHand(s)
+		h1.handType = getType2(h1.cards)
+		//fmt.Println("t1", h1.handType)
+		hands = append(hands, h1)
+	}
+	//fmt.Println(hands)
+	sort.Stable(HandSlice(hands))
+	//fmt.Println(hands)
+	for i := 0; i < len(hands); i++ {
+		res += hands[i].bid * (i + 1)
+	}
+	return res
 }
