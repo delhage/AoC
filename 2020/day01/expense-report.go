@@ -3,7 +3,7 @@ package day01
 import (
 	"strconv"
 
-	"../utils"
+	"aoc/2020/utils"
 )
 
 var input, _ = utils.ReadFile("day01/input.txt")
