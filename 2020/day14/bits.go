@@ -1,12 +1,11 @@
 package day14
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
 
-	"../utils"
+	"aoc/2020/utils"
 )
 
 var input, _ = utils.ReadFile("day14/input.txt")
@@ -118,7 +117,6 @@ func Solve1() int {
 	for _, m := range mem {
 		res += m
 	}
-	fmt.Println(mem)
 	return res
 }
 
