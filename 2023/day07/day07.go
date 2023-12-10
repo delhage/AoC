@@ -2,10 +2,16 @@ package day07
 
 import (
 	"aoc/2023/utils"
-	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 )
+
+type Interface interface {
+	Len() int
+	Less(i, j int) bool
+	Swap(i, j int)
+}
 
 var input, _ = utils.ReadFile("day07/input.txt")
 
@@ -25,12 +31,46 @@ var cardMap = map[string]int{
 	"A": 14,
 }
 
+var cardMap2 = map[string]int{
+	"2": 2,
+	"3": 3,
+	"4": 4,
+	"5": 5,
+	"6": 6,
+	"7": 7,
+	"8": 8,
+	"9": 9,
+	"T": 10,
+	"J": 1,
+	"Q": 12,
+	"K": 13,
+	"A": 14,
+}
+
 type Hand struct {
 	cards    []string
 	handType int
 	bid      int
-	rank     int
 }
+
+type HandSlice []Hand
+
+func (h HandSlice) Len() int { return len(h) }
+func (h HandSlice) Less(i, j int) bool {
+	if h[i].handType < h[j].handType {
+		return true
+	} else if h[i].handType == h[j].handType {
+		for k := 0; k < 5; k++ {
+			if cardMap[h[i].cards[k]] < cardMap[h[j].cards[k]] {
+				return true
+			} else if cardMap[h[i].cards[k]] > cardMap[h[j].cards[k]] {
+				return false
+			}
+		}
+	}
+	return false
+}
+func (h HandSlice) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
 
 func stringToHand(s string) Hand {
 	var res Hand
@@ -40,13 +80,12 @@ func stringToHand(s string) Hand {
 	}
 	res.handType = 0
 	res.bid, _ = strconv.Atoi(t[1])
-	res.rank = 0
 	return res
 }
 
 func getType(h []string) int {
 	var cardArray [15]int
-	fmt.Println("h", h)
+	//fmt.Println("h", h)
 	for i := 0; i < len(h); i++ {
 		//fmt.Println("cardMap[h[i]]", cardMap[h[i]])
 		cardArray[cardMap[h[i]]]++
@@ -89,13 +128,19 @@ func getType(h []string) int {
 // Solve1 returns answer to first problem
 func Solve1() int {
 	var res = 0
-	var hands []Hand
+	var hands HandSlice
 
 	for _, s := range input {
 		h1 := stringToHand(s)
 		h1.handType = getType(h1.cards)
-		fmt.Println("t1", h1.handType)
+		//fmt.Println("t1", h1.handType)
 		hands = append(hands, h1)
+	}
+	//fmt.Println(hands)
+	sort.Stable(HandSlice(hands))
+	//fmt.Println(hands)
+	for i := 0; i < len(hands); i++ {
+		res += hands[i].bid * (i + 1)
 	}
 	return res
 }
