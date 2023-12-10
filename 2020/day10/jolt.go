@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strconv"
 
-	"../utils"
+	"aoc/2020/utils"
 )
 
 var input, _ = utils.ReadFile("day10/input.txt")
