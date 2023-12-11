@@ -7,11 +7,11 @@ import (
 	"strings"
 )
 
-type Interface interface {
-	Len() int
-	Less(i, j int) bool
-	Swap(i, j int)
-}
+// type Interface interface {
+// 	Len() int
+// 	Less(i, j int) bool
+// 	Swap(i, j int)
+// }
 
 var input, _ = utils.ReadFile("day07/input.txt")
 
