@@ -43,6 +43,7 @@ func getRace() Race {
 	return r
 }
 
+// Brute force
 func getWins(r Race) int {
 	var res int
 	for i := 0; i <= r.t; i++ {
@@ -53,6 +54,7 @@ func getWins(r Race) int {
 	return res
 }
 
+// SolveQuad solves quadratic equation
 func solveQuad(a, b, c int) (float64, float64) {
 	var d = float64(b*b - 4*a*c)
 	var x1, x2 float64
@@ -68,6 +70,7 @@ func Solve1() int {
 	for _, r := range rs {
 		x, y := solveQuad(-1, r.t, -r.d)
 		res *= (int(math.Ceil(y) - (math.Floor(x)) - 1))
+		// Brute force
 		//res *= getWins(r)
 	}
 	return res
@@ -78,5 +81,6 @@ func Solve2() int {
 	r := getRace()
 	x, y := solveQuad(-1, r.t, -r.d)
 	return int(math.Ceil(y)-(math.Floor(x))) - 1
+	// Brute force
 	//return getWins(r)
 }
