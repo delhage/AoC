@@ -11,6 +11,7 @@ import (
 	"aoc/2023/day07"
 	"aoc/2023/day08"
 	"aoc/2023/day09"
+	"aoc/2023/day15"
 	"aoc/2023/utils"
 )
 
@@ -33,5 +34,7 @@ func main() {
 		utils.Perf("2023-12-08", day08.Solve1, day08.Solve2)
 	case "day09":
 		utils.Perf("2023-12-09", day09.Solve1, day09.Solve2)
+	case "day15":
+		utils.Perf("2023-12-15", day15.Solve1, day15.Solve2)
 	}
 }
