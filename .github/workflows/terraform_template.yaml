@@ -20,7 +20,7 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform apply ${{ inputs.host }}"
+    name: "Terraform plan ${{ inputs.terraform_apply == 'true' && 'and apply' }} ${{ inputs.host }}"
     runs-on: ubuntu-22.04
 
     steps:
