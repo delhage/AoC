@@ -8,7 +8,6 @@ on:
 jobs:
   terraform-pr-stage:
     uses: delhage/AoC/.github/workflows/terraform_template.yaml@master
-    secrets: inherit
     with:
       host: https://vlinexus02.hh.atg.se
       terraform_apply: false
