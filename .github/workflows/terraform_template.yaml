@@ -1,0 +1,31 @@
+---
+name: 'Template (Terraform)'
+
+on:
+  workflow_call:
+    inputs:
+      host:
+        description: Host to deploy on
+        type: string
+        required: true
+      terraform_apply:
+        description: Should we run terraform apply?
+        type: string
+        default: false
+        required: false
+      environment:
+        description: Deploy to environment
+        type: string
+        required: false
+
+jobs:
+  terraform:
+    name: "Terraform apply ${{ inputs.host }}"
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+
+      - name: "Terraform init, plan ${{ inputs.terraform_apply == 'true' && 'and apply' }} "
+        run: echo Testing
