@@ -10,7 +10,7 @@ on:
         required: true
       terraform_apply:
         description: Should we run terraform apply?
-        type: boolean
+        type: string
         default: false
         required: false
       environment:
@@ -27,5 +27,5 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v4
 
-      - name: "Terraform init, plan ${{ inputs.terraform_apply == true && 'and apply' || '' }} "
+      - name: "Terraform init, plan ${{ inputs.terraform_apply == 'true' && 'and apply' || '' }} "
         run: echo Testing
